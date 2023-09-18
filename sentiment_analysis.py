@@ -102,7 +102,7 @@ tokenizer.fit_on_texts(text_list)
 sequences = tokenizer.texts_to_sequences(text_list)
 
 # Choose max sequence length
-max_length = 14
+max_length = 25
 
 # Pad sequences
 padded_sequences = pad_sequences(
@@ -252,21 +252,3 @@ plt.ylabel("Loss")
 plt.xlabel("Epoch")
 plt.legend(["Train", "Validation"], loc="upper left")
 plt.show()
-
-###############################################################################################
-# %% scrap
-# Import library
-import numpy as np
-
-# Convert padded_sequences to DataFrame
-df_padded_sequences = pd.DataFrame(padded_sequences)
-
-# Concatenate df and df_padded_sequences along columns
-df_preprocessed = pd.concat([df.reset_index(drop=True), df_padded_sequences], axis=1)
-
-# Remove 'review' and 'tokens' columns as they are raw and tokenized reviews respectively
-df_preprocessed.drop(columns=["Review", "tokens"], inplace=True)
-
-# # Export to CSV
-# output_path = "C:\\Projects\\WGU\\D213\\Python"
-# df_preprocessed.to_csv(os.path.join(output_path, "prepared_dataset.csv"), index=False)
